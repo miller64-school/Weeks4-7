@@ -22,4 +22,9 @@ public class UIDemo : MonoBehaviour
     {
             sr.color = Random.ColorHSV();
     }
+
+    public void SetSize(float size)
+    {
+        transform.localScale = Vector2.one * size;
+    }
 }
