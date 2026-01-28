@@ -840,15 +840,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7482667652216324306, guid: 510df997b905f7243ba07632025d40c8, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 665008264}
+        m_TargetAssemblyTypeName: UIDemo, Assembly-CSharp
+        m_MethodName: ChangeColour
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 665008264}
+        m_TargetAssemblyTypeName: UIDemo, Assembly-CSharp
+        m_MethodName: SetSize
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 2
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

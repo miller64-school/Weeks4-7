@@ -18,7 +18,7 @@ public class UIDemo : MonoBehaviour
         }
     }
 
-    void ChangeColour()
+    public void ChangeColour()
     {
             sr.color = Random.ColorHSV();
     }
