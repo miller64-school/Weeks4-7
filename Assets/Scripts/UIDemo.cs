@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIDemo : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class UIDemo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.anyKey.wasPressedThisFrame)
+        {
+            ChangeColour();
+        }
+    }
 
+    void ChangeColour()
+    {
+            sr.color = Random.ColorHSV();
     }
 }
