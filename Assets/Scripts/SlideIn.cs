@@ -7,7 +7,7 @@ public class SlideIn : MonoBehaviour
 
     public void Start()
     {
-        InvokeRepeating("SlideIn", 1s, 1s)
+        InvokeRepeating("SlideIn", 1, 1);
     }
 
     public void Update()
