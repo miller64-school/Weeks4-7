@@ -39,7 +39,8 @@ public class AudioPlayback : MonoBehaviour
 
             if (timer3 <= 0f)
             {
-                Instantiate(zombiePrefab, Vector3.zero, Quaternion.identity);
+                Instantiate(zombiePrefab, new Vector3(0f, -2f, 0f), Quaternion.identity);
+                audioSource.PlayOneShot(zombie[Random.Range(0, zombie.Length)]); // Start playing zombie sounds when timer3 starts
                 timer3 = Random.Range(0.5f, 2f); // Restart timer 3 when timer 3 ends
             }
 
@@ -63,6 +64,5 @@ public class AudioPlayback : MonoBehaviour
         // Originally it was 0.5 seconds but I like a challenge
 
         audioSource.PlayOneShot(incoming[Random.Range(0, incoming.Length)]); // Play Rochelle incoming when timer2 starts
-        audioSource.PlayOneShot(zombie[Random.Range(0, zombie.Length)]); // Start playing zombie sounds when timer3 starts
     }
 }

@@ -1,11 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections; // I was told this was useful
 
 public class ZombieMove : MonoBehaviour
 {
     public float speed = 3f;
     public float moveDirection;
+    public float wobbleTimer = 0.5f;
 
     public void Start() // Only do this when the spawning happens
     {
@@ -22,8 +22,6 @@ public class ZombieMove : MonoBehaviour
             moveDirection = 1f;
             GetComponent<SpriteRenderer>().flipX = false;
         }
-
-        StartCoroutine(Wobble());
     }
 
     public void Update()
@@ -31,14 +29,12 @@ public class ZombieMove : MonoBehaviour
         transform.position += Vector3.right * moveDirection * speed * Time.deltaTime; // Move the guy based on their move direction at a constant rate
         if (transform.position.x > 14f || transform.position.x < -14f)
             Destroy(gameObject); // Destroy the guy if they go too far
-    }
 
-    public IEnumerator Wobble()
-    {
-        while (true) // While it's running
+        wobbleTimer -= Time.deltaTime;
+        if (wobbleTimer <= 0f)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(-15f, 15f)); // Randomly rotate the zombie to make them look like they're wobbling
-            yield return new WaitForSeconds(0.5f); // Then wait a little bit to not make them spam wobble
+            transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(-15f, 15f));
+            wobbleTimer = 0.5f;
         }
     }
 }
