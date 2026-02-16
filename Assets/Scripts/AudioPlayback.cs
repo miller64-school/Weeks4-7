@@ -1,52 +1,68 @@
-using UnityEngine;
 using System.Collections;
+using System.Text;
+using UnityEngine;
 
 public class AudioPlayback : MonoBehaviour
 {
     public GameObject zombiePrefab;
 
-    public AudioClip[] incoming; // For Horde begins, size 7
-    public AudioClip[] zombie; // For Zombie spawns, size 3
-    public AudioClip[] mallgerms; // For Break begins, size 2
+    public AudioClip[] incoming;   // 7 audio clips
+    public AudioClip[] zombie;     // 3 audio clips
+    public AudioClip[] mallgerms;  // 2 audio clips
 
     AudioSource audioSource;
+
+    float timer1;   // Break timer
+    float timer2;   // Horde timer
+    float timer3;   // spawn interval
+
+    bool hordeActive = false;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        StartCoroutine(Timer1()); // Start break timer at start of game
+        StartTimer1(); // Start break timer at start of game
     }
 
-    IEnumerator Timer1() // Break period
+    void Update()
     {
-        audioSource.PlayOneShot(mallgerms[Random.Range(0, mallgerms.Length)]); // Play zombie sound
-        yield return new WaitForSeconds(Random.Range(5f, 10f)); // Randomly pick between 5 and 10 seconds
-        StartCoroutine(Timer2()); // Start Horde Rush
-    }
-
-    IEnumerator Timer2() // Horde rush
-    {
-        audioSource.PlayOneShot(incoming[Random.Range(0, incoming.Length)]); // Play incoming sound
-
-        float duration = Random.Range(10f, 20f); // Randomly pick between 10 and 20 seconds
-        float end = Time.time + duration;
-
-        StartCoroutine(Timer3(duration)); // Start Zombie spawn
-
-        yield return new WaitForSeconds(duration);
-        StartCoroutine(Timer1()); // Start Break period
-    }
-
-    IEnumerator Timer3(float duration) // Zombie spawn
-    {
-        float end = Time.time + duration;
-
-        while (Time.time < end) // Stop if time's up
+        if (!hordeActive)
         {
-            Instantiate(zombiePrefab, Vector3.zero, Quaternion.identity); // Spawn the zombie
-            yield return new WaitForSeconds(Random.Range(0.1f, 2f)); // on a random time interval between 0.1 and 2 seconds
-            // Originally it was 0.5 - 2 seconds but like. That's way too easy
-            audioSource.PlayOneShot(zombie[Random.Range(0, zombie.Length)]); // Play zombie sound every spawn
+            timer1 -= Time.deltaTime; // deltaTime is important because
+            if (timer1 <= 0f) // Check if timer 1 is done
+                StartTimer2(); // Start timer 2 when timer 1 ends
         }
+        else
+        {
+            timer2 -= Time.deltaTime; // It's used to track frame time
+            timer3 -= Time.deltaTime; // So it's consistent across framerates
+
+            if (timer3 <= 0f)
+            {
+                Instantiate(zombiePrefab, Vector3.zero, Quaternion.identity);
+                timer3 = Random.Range(0.5f, 2f); // Restart timer 3 when timer 3 ends
+            }
+
+            if (timer2 <= 0f)
+                StartTimer1(); // Start timer 1 when timer 2 ends
+        }
+    }
+
+    void StartTimer1() // 
+    {
+        hordeActive = false;
+        timer1 = Random.Range(5f, 10f);
+        audioSource.PlayOneShot(mallgerms[Random.Range(0, mallgerms.Length)]); // Play random mallgerms sound when break starts
+    }
+
+    void StartTimer2()
+    {
+        hordeActive = true;
+        timer2 = Random.Range(10f, 20f); // 10 to 20 seconds
+        timer3 = Random.Range(0.1f, 2f); // 0.1 to 2 seconds
+        // Originally it was 0.5 seconds but I like a challenge
+
+        audioSource.PlayOneShot(incoming[Random.Range(0, incoming.Length)]); // Play Rochelle incoming when timer2 starts
+        audioSource.PlayOneShot(zombie[Random.Range(0, zombie.Length)]); // Start playing zombie sounds when timer3 starts
     }
 }
