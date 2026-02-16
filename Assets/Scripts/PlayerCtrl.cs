@@ -1,13 +1,18 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerCtrl : MonoBehaviour
 {
     public SpriteRenderer sprite;
 
+    public AudioClip mammothshot;
+
     bool facingLeft = true; // Initialize that the player is facing left when they beign
 
     public void Shoot()
     {
+        GetComponent<AudioSource>().PlayOneShot(mammothshot); // BANG
+
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie"); // Find everything tagged Zombie
         // I had no idea what tags were until I looked them up and it's like what the hell why haven't I been using these earlier
         GameObject closest = null;
