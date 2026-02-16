@@ -448,6 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286002681}
   - component: {fileID: 286002680}
+  - component: {fileID: 286002682}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -466,7 +467,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 9e9c3815dace30c49bccdf5674625180, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -567,6 +568,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &286002682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286002679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766d0dae7425cc042aec84a1c2899c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombiePrefab: {fileID: 2578417932600766557, guid: 03db1c7837ab1ad4f88e4b38dda736ff, type: 3}
+  incoming:
+  - {fileID: 8300000, guid: 249359b14a9d7f0429038649649c2388, type: 3}
+  - {fileID: 8300000, guid: 95cd4ecdfa2d117418980bc29f59426b, type: 3}
+  - {fileID: 8300000, guid: 6e74c0a091a7e434bb2d5795b399cbe3, type: 3}
+  - {fileID: 8300000, guid: b93968637d833c84980e6f10095163c0, type: 3}
+  - {fileID: 8300000, guid: d8bdcdebf5df8b94a92317f40706f910, type: 3}
+  - {fileID: 8300000, guid: 98cb9fd7741cbec439e6773338a720c9, type: 3}
+  - {fileID: 8300000, guid: 5da0b1fcdada02d489596502982e9056, type: 3}
+  zombie:
+  - {fileID: 8300000, guid: 085b81575a9fa9d4f84c5d1d5a220053, type: 3}
+  - {fileID: 8300000, guid: 217951a5edaec4941966f89d9e0dbf43, type: 3}
+  - {fileID: 8300000, guid: 9f13ba93bcc7bc4498d61b6b643ec713, type: 3}
+  mallgerms:
+  - {fileID: 8300000, guid: 9e9c3815dace30c49bccdf5674625180, type: 3}
+  - {fileID: 8300000, guid: de5789e6d61f9174da26db0be20a0929, type: 3}
 --- !u!1 &489338160
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +678,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.96, y: 0.96, z: 0.96}
+  m_LocalScale: {x: 0.93, y: 0.93, z: 0.93}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -847,7 +876,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 739537066}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610622483}
+        m_TargetAssemblyTypeName: PlayerCtrl, Assembly-CSharp
+        m_MethodName: Turn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Turn()
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &739537066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,20 +1010,20 @@ MonoBehaviour:
   m_FillRect: {fileID: 1635427576}
   m_HandleRect: {fileID: 529639924}
   m_Direction: 0
-  m_MinValue: -6
-  m_MaxValue: 6
+  m_MinValue: -5
+  m_MaxValue: 5
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 346f7a34ff96813408ffb6887224a102, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1610622483}
+        m_TargetAssemblyTypeName: PlayerCtrl, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1070,7 +1111,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1102184518}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610622483}
+        m_TargetAssemblyTypeName: PlayerCtrl, Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Shoot()
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1102184518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,51 +1237,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103996700}
   m_CullTransparentMesh: 1
---- !u!1 &1327720167
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1327720168}
-  - component: {fileID: 1327720169}
-  m_Layer: 0
-  m_Name: ZombieSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1327720168
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327720167}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1327720169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327720167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37c424c87cb517541b2e9a658187f832, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zombiePrefab: {fileID: 2578417932600766557, guid: 03db1c7837ab1ad4f88e4b38dda736ff, type: 3}
 --- !u!1 &1392595646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1610622482}
   - component: {fileID: 1610622481}
+  - component: {fileID: 1610622483}
   m_Layer: 0
   m_Name: Rochelle
   m_TagString: Untagged
@@ -1331,7 +1340,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.69, y: 9.84}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1352,6 +1361,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610622483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610622480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3c409ae3669714290f8c205504bf39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 1610622481}
 --- !u!1 &1635427575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900537693}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1650,7 +1672,7 @@ GameObject:
   - component: {fileID: 2101705738}
   - component: {fileID: 2101705737}
   m_Layer: 0
-  m_Name: TimerSpawner
+  m_Name: ZombieSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1677,8 +1699,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101705736}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21887323, y: -2.0580955, z: -0.0015797296}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1688,11 +1710,10 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1900537696}
   - {fileID: 1610622482}
-  - {fileID: 489338162}
   - {fileID: 236424137}
-  - {fileID: 54023407}
-  - {fileID: 1327720168}
-  - {fileID: 286002681}
+  - {fileID: 1900537696}
   - {fileID: 2101705738}
+  - {fileID: 489338162}
+  - {fileID: 54023407}
+  - {fileID: 286002681}
